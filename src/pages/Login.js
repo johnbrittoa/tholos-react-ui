@@ -1,4 +1,4 @@
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -7,12 +7,12 @@ import {
   Button,
   Container,
   Grid,
-  Link,
   TextField,
   Typography
 } from '@material-ui/core';
-import FacebookIcon from 'src/icons/Facebook';
-import GoogleIcon from 'src/icons/Google';
+import {
+  User as UserIcon,
+} from 'react-feather';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Login = () => {
   return (
     <>
       <Helmet>
-        <title>Login | Material Kit</title>
+        <title>Login | Tholos</title>
       </Helmet>
       <Box
         sx={{
@@ -34,11 +34,11 @@ const Login = () => {
         <Container maxWidth="sm">
           <Formik
             initialValues={{
-              email: 'demo@devias.io',
+              username: 'demo@devias.io',
               password: 'Password123'
             }}
             validationSchema={Yup.object().shape({
-              email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
+              username: Yup.string().email('Must be a valid email').max(255).required('Username is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
             onSubmit={() => {
@@ -55,57 +55,6 @@ const Login = () => {
               values
             }) => (
               <form onSubmit={handleSubmit}>
-                <Box sx={{ mb: 3 }}>
-                  <Typography
-                    color="textPrimary"
-                    variant="h2"
-                  >
-                    Sign in
-                  </Typography>
-                  <Typography
-                    color="textSecondary"
-                    gutterBottom
-                    variant="body2"
-                  >
-                    Sign in on the internal platform
-                  </Typography>
-                </Box>
-                <Grid
-                  container
-                  spacing={3}
-                >
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <Button
-                      color="primary"
-                      fullWidth
-                      startIcon={<FacebookIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
-                    >
-                      Login with Facebook
-                    </Button>
-                  </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <Button
-                      fullWidth
-                      startIcon={<GoogleIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
-                    >
-                      Login with Google
-                    </Button>
-                  </Grid>
-                </Grid>
                 <Box
                   sx={{
                     pb: 1,
@@ -115,18 +64,18 @@ const Login = () => {
                   <Typography
                     align="center"
                     color="textSecondary"
-                    variant="body1"
+                    variant="h1"
                   >
-                    or login with email address
+                    Tholos
                   </Typography>
                 </Box>
                 <TextField
-                  error={Boolean(touched.email && errors.email)}
+                  error={Boolean(touched.username && errors.username)}
                   fullWidth
-                  helperText={touched.email && errors.email}
-                  label="Email Address"
+                  helperText={touched.username && errors.username}
+                  label="Username"
                   margin="normal"
-                  name="email"
+                  name="username"
                   onBlur={handleBlur}
                   onChange={handleChange}
                   type="email"
@@ -158,20 +107,42 @@ const Login = () => {
                     Sign in now
                   </Button>
                 </Box>
-                <Typography
-                  color="textSecondary"
-                  variant="body1"
+                <Grid
+                  container
+                  spacing={3}
                 >
-                  Don&apos;t have an account?
-                  {' '}
-                  <Link
-                    component={RouterLink}
-                    to="/register"
-                    variant="h6"
+                  <Grid
+                    item
+                    xs={12}
+                    md={6}
                   >
-                    Sign up
-                  </Link>
-                </Typography>
+                    <Button
+                      color="primary"
+                      fullWidth
+                      startIcon={<UserIcon />}
+                      onClick={handleSubmit}
+                      size="large"
+                      variant="contained"
+                    >
+                      Sign Up
+                    </Button>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    md={6}
+                  >
+                    <Button
+                      fullWidth
+                      startIcon={<UserIcon />}
+                      onClick={handleSubmit}
+                      size="large"
+                      variant="contained"
+                    >
+                      Forgot Password
+                    </Button>
+                  </Grid>
+                </Grid>
               </form>
             )}
           </Formik>
