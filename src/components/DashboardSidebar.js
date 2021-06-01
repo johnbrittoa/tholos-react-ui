@@ -19,22 +19,22 @@ import NavItem from './NavItem';
 
 const items = [
   {
-    href: '/app/dashboard',
+    href: '/tholos/dashboard',
     icon: BarChartIcon,
     title: 'Dashboard'
   },
   {
-    href: '/app/customers',
+    href: '/tholos/customers',
     icon: UsersIcon,
     title: 'Dicoms'
   },
   {
-    href: '/app/products',
+    href: '/tholos/products',
     icon: ShoppingBagIcon,
     title: 'Orders'
   },
   {
-    href: '/app/account',
+    href: '/tholos/account',
     icon: UserIcon,
     title: 'Matched'
   }
