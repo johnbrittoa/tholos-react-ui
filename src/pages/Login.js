@@ -34,15 +34,15 @@ const Login = () => {
         <Container maxWidth="sm">
           <Formik
             initialValues={{
-              username: 'demo@devias.io',
-              password: 'Password123'
+              username: '',
+              password: ''
             }}
             validationSchema={Yup.object().shape({
               username: Yup.string().email('Must be a valid email').max(255).required('Username is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
             onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+              navigate('/tholos/dashboard', { replace: true });
             }}
           >
             {({
@@ -120,7 +120,9 @@ const Login = () => {
                       color="primary"
                       fullWidth
                       startIcon={<UserIcon />}
-                      onClick={handleSubmit}
+                      onClick={() => {
+                        navigate('/register', { replace: true });
+                      }}
                       size="large"
                       variant="contained"
                     >
